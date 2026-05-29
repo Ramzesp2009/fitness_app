@@ -1,0 +1,56 @@
+# Node.js
+node_modules/
+api/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs
+*.log
+logs/*.log
+
+# Build
+dist/
+build/
+tmp/
+temp/
+
+# Prisma
+api/prisma/dev.db
+api/prisma/dev.db-journal
+
+# Docker
+*.pid
+*.seed
+docker-data/
+
+# Android / Kotlin
+*.iml
+.gradle/
+local.properties
+.idea/
+captures/
+*.apk
+*.ap_
+*.dex
+*.class
+*.jar
+*.keystore
+*.jks
+*.so
+*.o
+*.a
+*.log
+build/
+app/build/
+
+# OS files
+.DS_Store
+Thumbs.db
