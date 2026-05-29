@@ -34,6 +34,7 @@ services:
     volumes:
       - ./api:/app
       - /app/node_modules       # не перезаписуємо node_modules з хосту
+      - /app/prisma/migrations
   
   # ai:
   #   build: ./ai
