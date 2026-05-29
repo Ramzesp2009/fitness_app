@@ -1,26 +1,23 @@
 import dotenv from 'dotenv';
 import { PrismaClient } from '@prisma/client';
-import bcrypt from 'bcryptjs';
 
 dotenv.config();
 
-const prisma = new PrismaClient({
-  adapter: process.env.DATABASE_URL,
-});
+const prisma = new PrismaClient();
 
 async function main() {
-    // test user
-    const user = await prisma.user.upsert({
-        where: { email: 'test@test.com' },
-        update: {},
-        create: {
-            username: 'testuser',
-            email: 'test@test.com',
-            password: await bcrypt.hash('password123', 10)
-        },
-    });
+    // // test user
+    // const user = await prisma.user.upsert({
+    //     where: { email: 'test@test.com' },
+    //     update: {},
+    //     create: {
+    //         username: 'testuser',
+    //         email: 'test@test.com',
+    //         password: await bcrypt.hash('password123', 10)
+    //     },
+    // });
 
-    console.log('Seeded user:', user);
+    // console.log('Seeded user:', user);
 
     const exercises = await Promise.all([
         prisma.exercise.upsert({

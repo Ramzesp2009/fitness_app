@@ -11,4 +11,4 @@ RUN npx prisma generate
 # Компілюємо TypeScript
 # RUN npm run build
 EXPOSE 3000
-CMD ["sh", "-c", "./node_modules/.bin/prisma migrate deploy && ./node_modules/.bin/prisma db execute --file ./prisma/trigger.sql && node src/index.js"]
+CMD ["sh", "-c", "./node_modules/.bin/prisma migrate deploy && node src/index.js"]

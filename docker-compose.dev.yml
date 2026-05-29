@@ -1,0 +1,12 @@
+services:
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./api:/app
+      - /app/node_modules
+      - /app/prisma/migrations
+    environment:
+      NODE_ENV: development
+    command: npm run dev

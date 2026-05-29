@@ -131,3 +131,20 @@ ALTER TABLE "follows" ADD CONSTRAINT "follows_follower_id_fkey" FOREIGN KEY ("fo
 
 -- AddForeignKey
 ALTER TABLE "follows" ADD CONSTRAINT "follows_following_id_fkey" FOREIGN KEY ("following_id") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- Create Function and Trigger for calculating 1RM
+CREATE OR REPLACE FUNCTION calc_one_rm()
+RETURNS trigger AS $$
+BEGIN
+    IF NEW.reps IS NOT NULL AND NEW.weight_kg IS NOT NULL AND NEW.reps > 0 THEN
+        NEW.one_rm := ROUND(
+            (NEW.weight_kg / (1.0278 - 0.0278 * NEW.reps))::numeric, 2
+        );
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_calc_one_rm
+BEFORE INSERT OR UPDATE ON workout_sets
+FOR EACH ROW EXECUTE FUNCTION calc_one_rm();

@@ -31,10 +31,10 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-    volumes:
-      - ./api:/app
-      - /app/node_modules       # не перезаписуємо node_modules з хосту
-      - /app/prisma/migrations
+    # volumes:
+    #   - ./api:/app
+    #   - /app/node_modules       # не перезаписуємо node_modules з хосту
+    #   - /app/prisma/migrations
   
   # ai:
   #   build: ./ai
